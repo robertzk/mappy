@@ -15,8 +15,7 @@ in full each time. Note that mappy relies on the `~/.R/mappy` file (which it wil
 create the first time it needs it) to make this work between sessions.
 If you wish to use a different file, set `options(mappy.directory = "/your/dir")`.
 
-Mappy shortcuts do not apply outside of interactive R sessions (see
-\code{\link[base]{interactive}}.
+Mappy shortcuts do not apply outside of [interactive R sessions](https://stat.ethz.ch/R-manual/R-devel/library/base/html/interactive.html).
 
 # Operations
 
