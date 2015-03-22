@@ -61,9 +61,10 @@ describe("Loading a registry", {
   test_that("it can load the registry into an environment", {
     with_mappy({
       env <- new.env()
-      register("a", quote(cat("Hello world")))
+      register("a", quote(env$y <- "Hello world"))
       load_registry(env)
-      expect_output(env$a, "Hello world")
+      env$a
+      expect_equal(env$y, "Hello world")
     })
   })
 })

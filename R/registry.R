@@ -45,8 +45,9 @@ deregister <- Vectorize(deregister)
 #'
 #' @param envir environment. By default, the global environment.
 load_registry <- function(envir) {
-  exprs       <- registry_map()
-  exprs$envir <- envir
+  exprs          <- registry_map()
+  exprs$envir    <- envir
+  exprs$register <- FALSE
   do.call(mappy, exprs)
 }
 
