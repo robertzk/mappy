@@ -16,20 +16,25 @@
 #'    the mappy package is attached.
 #' @importFrom director registry
 register <- function(name, expr) {
-  stopifnot(is.character(name) && length(name) == 1)
-  stopifnot(is.expression(expr))
+  stopifnot(is.character(name))
+  if (length(name) == 0) return()
+  else if (length(name) > 1) {
+    stopifnot(length(expr) == length(name))
+    for (i in seq_along(name)) { Recall(name[[i]], expr[[i]]) }
+    return()
+  }
+  stopifnot(is.language(expr))
 
-  maps <- registry()$get(mappy_file())
+  maps      <- registry_map()
   maps$name <- expr
   registry()$set(mappy_file(), maps)
 }
-register <- Vectorize(register)
 
 #' @rdname register
 deregister <- function(name) {
   stopifnot(is.character(name) && length(name) == 1)
 
-  maps <- registry()$get(mappy_file())
+  maps         <- registry_map()
   maps[[name]] <- NULL
   registry()$set(mappy_file(), maps)
 }
@@ -39,9 +44,14 @@ deregister <- Vectorize(deregister)
 #'
 #' @param envir environment. By default, the global environment.
 load_registry <- function(envir) {
-  exprs       <- registry()$get(mappy_file())
+  exprs       <- registry_map()
   exprs$envir <- envir
   do.call(mappy, exprs)
+}
+
+#' @rdname load_registry
+unload_registry <- function(envir) {
+  suppressWarnings(rm(list = names(registry_map()), envir = envir))
 }
 
 #' @importFrom director registry
@@ -49,12 +59,16 @@ registry <- memoise::memoise(function() {
   director::registry$new(registry_dir())
 })
 
+registry_map <- function() {
+  registry()$get(mappy_file())
+}
+
 mappy_file <- memoise::memoise(function() {
-  basename(getOption("mappy.file")) %||% "mappy"
+  basename(getOption("mappy.file") %||% "mappy")
 })
 
 registry_dir <- memoise::memoise(function() {
-  dirname(getOption("mappy.file")) %||% "~/.R"
+  dirname(getOption("mappy.file") %||% "~/.R/foo")
 })
 
 

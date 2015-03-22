@@ -1,7 +1,13 @@
 .onAttach <- function(lib, pkg) {
-  register()
+  if (interactive()) {
+    packageStartupMessage("Attaching mappy shortcuts...\n")
+    load_registry(globalenv())
+  }
 }
 
 .onDetach <- function(lib, pkg) {
-  deregister()
+  if (interactive()) {
+    packageStartupMessage("Detaching mappy shortcuts...\n")
+    deregister()
+  }
 }

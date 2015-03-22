@@ -7,6 +7,7 @@
 #' @param register logical. Whether or not to register the shortcut
 #'    in the registry. By default, \code{TRUE} if \code{envir} is the global
 #'    environment, and \code{FALSE} otherwise.
+#' @export
 #' @examples
 #' mappy(hi = cat("Hello world"))
 #' hi # Now, writing "hi" executes cat("Hello world")
