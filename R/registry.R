@@ -25,9 +25,9 @@ register <- function(name, expr) {
   }
   stopifnot(is.language(expr))
 
-  maps      <- registry_map()
-  maps$name <- expr
-  registry()$set(mappy_file(), maps)
+  maps         <- registry_map()
+  maps[[name]] <- expr
+  registry_obj()$set(mappy_file(), maps)
 }
 
 #' @rdname register
@@ -36,7 +36,8 @@ deregister <- function(name) {
 
   maps         <- registry_map()
   maps[[name]] <- NULL
-  registry()$set(mappy_file(), maps)
+  registry_obj()$set(mappy_file(), maps)
+  name
 }
 deregister <- Vectorize(deregister)
 
@@ -55,12 +56,12 @@ unload_registry <- function(envir) {
 }
 
 #' @importFrom director registry
-registry <- memoise::memoise(function() {
+registry_obj <- memoise::memoise(function() {
   director::registry$new(registry_dir())
 })
 
 registry_map <- function() {
-  registry()$get(mappy_file())
+  registry_obj()$get(mappy_file())
 }
 
 mappy_file <- memoise::memoise(function() {
