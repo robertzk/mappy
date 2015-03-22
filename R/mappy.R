@@ -10,7 +10,8 @@
 #' @export
 #' @examples
 #' mappy(hi = cat("Hello world"))
-#' hi # Now, writing "hi" executes cat("Hello world")
+#' # Now, writing "hi" executes cat("Hello world")
+#' stopifnot(bindingIsActive("hi", globalenv()))
 #' unmappy("hi") # Now the shortcut is gone.
 #'
 #' env <- new.env()
