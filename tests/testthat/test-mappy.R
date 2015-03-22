@@ -36,5 +36,19 @@ describe("Unmapping shortcuts", {
   test_that("it issues a warning when attempting to unmap a non-existent shortcut", {
     expect_warning(unmappy("not a thing yo"), "not a shortcut")
   })
+
+  test_that("it can unmap one shortcut", {
+    env <- new.env()
+    mappy(x = cat("Hello"), envir = env)
+    unmappy("x", envir = env)
+    expect_null(env$x)
+  })
+
+  test_that("it can unmap multiple shortcut", {
+    env <- new.env()
+    mappy(x = cat("Hello"), y = cat("Hi"), envir = env)
+    unmappy(c("x", "y"), envir = env)
+    expect_null(env$x)
+  })
 })
 
