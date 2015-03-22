@@ -29,6 +29,9 @@ environment, and \code{FALSE} otherwise.}
 in the registry. By default, \code{TRUE} if \code{envir} is the global
 environment, and \code{FALSE} otherwise.}
 }
+\value{
+the names of the bound shortcuts.
+}
 \description{
 Assign an alias to an R expression in the interactive console.
 

@@ -7,6 +7,7 @@
 #' @param register logical. Whether or not to register the shortcut
 #'    in the registry. By default, \code{TRUE} if \code{envir} is the global
 #'    environment, and \code{FALSE} otherwise.
+#' @return the names of the bound shortcuts.
 #' @export
 #' @examples
 #' mappy(hi = cat("Hello world"))
@@ -31,9 +32,11 @@ mappy <- function(..., envir = globalenv(), register = identical(envir, globalen
   lapply(seq_along(expressions), function(i) {
     make_binding(names(expressions)[i], expressions[[i]], envir, isTRUE(register))
   })
+  names(expressions)
 }
 
 #' @rdname mappy 
+#' @export
 #' @inheritParams mappy
 #' @param expression_names character. The expressions to unmap.
 #' @param deregister logical. Whether or not to deregister the shortcut
@@ -54,6 +57,7 @@ unmappy <- Vectorize(unmappy, "expression_names")
 #' A list of all mapped shortcuts.
 #'
 #' @include registry.R
+#' @export
 #' @export
 mappy_all <- function() { (registry_map()) }
 
