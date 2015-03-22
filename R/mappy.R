@@ -12,7 +12,30 @@
 #' mappy(m = lm(Sepal.Width ~ Sepal.Length, data = iris)$model, envir = env)
 #' # Now, env$m will refer to the lm model object. Note that since the
 #' # expression will be re-computed each time, so will the model!
-mappy <- function(..., envir) {
+mappy <- function(..., envir = globalenv()) {
+  stopifnot(is.environment(envir))
 
+  expressions <- eval(substitute(alist(...)))
+  check_expressions(expressions)
+
+  lapply(seq_along(expressions), function(i) {
+    makeActiveBinding(names(expressions)[i], expressions[[i]], envir = envir)
+  })
 }
 
+check_expressions <- function(expressions) {
+  expression_names <- names(expressions)
+
+  if ((length(expressions) > 0 && is.null(expression_names)) ||
+      (any(!nzchar(expression_names)))) {
+    stop("All expressions must be named.")
+  }
+
+  if (anyDuplicated(expression_names)) {
+    stop("All expression names must be unique, but ",
+         paste(unique(expression_names[duplicated(expression_names)]), collapse = ", "),
+        "occur multiple times.") 
+  }
+
+  expression_names
+}
