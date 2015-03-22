@@ -28,7 +28,7 @@ mappy <- function(..., envir = globalenv(), register = identical(envir, globalen
   check_expressions(expressions)
 
   lapply(seq_along(expressions), function(i) {
-    make_binding(names(expressions)[i], expressions[[i]], envir)
+    make_binding(names(expressions)[i], expressions[[i]], envir, isTRUE(register))
   })
 }
 
@@ -68,11 +68,12 @@ make_function <- function(expr, envir) {
   fn
 }
 
-make_binding <- function(name, expr, envir) {
+make_binding <- function(name, expr, envir, register) {
   fn   <- make_function(expr, envir)
   if (is_binding(name, envir)) {
     warning(sQuote(name), " is already a binding, overwriting.", call. = FALSE)
   }
+  if (register) register(name, expr)
   makeActiveBinding(name, fn, env = envir)
 }
 

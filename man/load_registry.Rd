@@ -2,9 +2,12 @@
 % Please edit documentation in R/registry.R
 \name{load_registry}
 \alias{load_registry}
+\alias{unload_registry}
 \title{Load the registry of stored shortcuts into an environment.}
 \usage{
 load_registry(envir)
+
+unload_registry(envir)
 }
 \arguments{
 \item{envir}{environment. By default, the global environment.}
