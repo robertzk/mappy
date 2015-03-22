@@ -32,3 +32,15 @@ describe("Adding to the registry", {
     })
   })
 })
+
+describe("Removing from the registry", {
+  test_that("it errors when a non-character is passed", {
+    expect_error(deregister(5))
+  })
+
+  test_that("it can remove from the registry", {
+    register("a", quote(cat("Hello world")))
+    deregister("a")
+    expect_false(is.element("a", names(registry_map())))
+  })
+})
