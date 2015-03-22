@@ -36,12 +36,17 @@ mappy <- function(..., envir = globalenv(), register = identical(envir, globalen
 #' @rdname mappy 
 #' @inheritParams mappy
 #' @param expression_names character. The expressions to unmap.
-unmappy <- function(expression_names, envir = globalenv()) {
+#' @param deregister logical. Whether or not to deregister the shortcut
+#'    in the registry. By default, \code{TRUE} if \code{envir} is the global
+#'    environment, and \code{FALSE} otherwise.
+unmappy <- function(expression_names, envir = globalenv(),
+                    deregister = identical(envir, globalenv())) {
   stopifnot(is.character(expression_names))
   if (!is_binding(expression_names, envir)) {
     warning(sQuote(expression_names), " is not a shortcut, skipping unmapping")
     return()
   }
+  if (isTRUE(deregister)) deregister(expression_names)
   rm(list = expression_names, envir = envir)
 }
 unmappy <- Vectorize(unmappy, "expression_names")

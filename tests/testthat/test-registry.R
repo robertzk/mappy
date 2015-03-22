@@ -43,6 +43,14 @@ describe("Removing from the registry", {
     deregister("a")
     expect_false(is.element("a", names(registry_map())))
   })
+
+  test_that("it can remove multiple objects from the registry", {
+    register("a", quote(cat("Hello world")))
+    register("b", quote(cat("Hello world")))
+    deregister(c("a", "b"))
+    expect_false(is.element("a", names(registry_map())))
+    expect_false(is.element("b", names(registry_map())))
+  })
 })
 
 describe("Loading a registry", {
