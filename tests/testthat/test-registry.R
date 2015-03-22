@@ -9,7 +9,7 @@ describe("Adding to the registry", {
   test_that("it does nothing when no expressions are passed", {
     with_mappy({
       register(character(0), quote(cat("hi")))
-      expect_null(registry_map())
+      expect_equal(length(registry_map()), 0)
     })
   })
 
@@ -44,3 +44,23 @@ describe("Removing from the registry", {
     expect_false(is.element("a", names(registry_map())))
   })
 })
+
+describe("Loading a registry", {
+  test_that("it can load the registry into an environment", {
+    env <- new.env()
+    register("a", quote(cat("Hello world")))
+    load_registry(env)
+    expect_output(env$a, "Hello world")
+  })
+})
+
+describe("Unloading a registry", {
+  test_that("it can unload the registry from an environment", {
+    env <- new.env()
+    register("a", quote(cat("Hello world")))
+    load_registry(env)
+    unload_registry(env)
+    expect_null(env$a)
+  })
+})
+
