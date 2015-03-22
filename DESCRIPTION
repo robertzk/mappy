@@ -14,7 +14,8 @@ License: MIT
 LazyData: true
 Imports:
     stringr,
-    director
+    director,
+    memoise
 Suggests:
     knitr,
     microbenchmark,

@@ -7,7 +7,7 @@
 \alias{unmappy}
 \title{Assign an alias to an R expression in the interactive console.}
 \usage{
-mappy(..., envir = globalenv())
+mappy(..., envir = globalenv(), register = identical(envir, globalenv()))
 
 unmappy(expression_names, envir = globalenv())
 }
@@ -17,6 +17,10 @@ accompanying examples.}
 
 \item{envir}{environment. The environment to bind the aliases in using
 \code{\link{makeActiveBinding}}. By default, the global environment.}
+
+\item{register}{logical. Whether or not to register the shortcut
+in the registry. By default, \code{TRUE} if \code{envir} is the global
+environment, and \code{FALSE} otherwise.}
 
 \item{expression_names}{character. The expressions to unmap.}
 }

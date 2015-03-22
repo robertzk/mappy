@@ -4,6 +4,9 @@
 #'    accompanying examples.
 #' @param envir environment. The environment to bind the aliases in using
 #'    \code{\link{makeActiveBinding}}. By default, the global environment.
+#' @param register logical. Whether or not to register the shortcut
+#'    in the registry. By default, \code{TRUE} if \code{envir} is the global
+#'    environment, and \code{FALSE} otherwise.
 #' @examples
 #' mappy(hi = cat("Hello world"))
 #' hi # Now, writing "hi" executes cat("Hello world")
@@ -14,8 +17,10 @@
 #' # Now, env$m will refer to the lm model object. Note that since the
 #' # expression will be re-computed each time, so will the model!
 #' model <- env$m
-mappy <- function(..., envir = globalenv()) {
+mappy <- function(..., envir = globalenv(), register = identical(envir, globalenv())) {
   stopifnot(is.environment(envir))
+  stopifnot(is.logical(register) && length(register) == 1)
+
   if (!interactive()) return()
 
   expressions <- eval(substitute(alist(...)))
