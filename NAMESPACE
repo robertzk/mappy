@@ -3,5 +3,5 @@
 export(mappy)
 export(mappy_all)
 export(unmappy)
-import(stringr)
 importFrom(director,registry)
+importFrom(memoise,memoise)

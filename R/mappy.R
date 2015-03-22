@@ -10,10 +10,12 @@
 #' @return the names of the bound shortcuts.
 #' @export
 #' @examples
-#' mappy(hi = cat("Hello world"))
-#' # Now, writing "hi" executes cat("Hello world")
-#' stopifnot(bindingIsActive("hi", globalenv()))
-#' unmappy("hi") # Now the shortcut is gone.
+#' \dontrun{ 
+#'   mappy(hi = cat("Hello world"))
+#'   hi # Now, writing "hi" executes cat("Hello world")
+#'   stopifnot(bindingIsActive("hi", globalenv()))
+#'   unmappy("hi") # Now the shortcut is gone.
+#' }
 #'
 #' env <- new.env()
 #' mappy(m = lm(Sepal.Width ~ Sepal.Length, data = iris)$model, envir = env)
