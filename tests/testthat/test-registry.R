@@ -23,4 +23,12 @@ describe("Adding to the registry", {
       expect_true(is.element("a", names(registry_map())))
     })
   })
+
+  test_that("it can register multiple expressions", {
+    with_mappy({
+      register(c("a", "b"), list(quote(cat("Hello world")), quote(cat("Hi"))))
+      expect_true(is.element("a", names(registry_map())))
+      expect_true(is.element("b", names(registry_map())))
+    })
+  })
 })
