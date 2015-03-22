@@ -7,13 +7,16 @@
 #' @examples
 #' mappy(hi = cat("Hello world"))
 #' hi # Now, writing "hi" executes cat("Hello world")
+#' unmappy("hi") # Now the shortcut is gone.
 #'
 #' env <- new.env()
 #' mappy(m = lm(Sepal.Width ~ Sepal.Length, data = iris)$model, envir = env)
 #' # Now, env$m will refer to the lm model object. Note that since the
 #' # expression will be re-computed each time, so will the model!
+#' model <- env$m
 mappy <- function(..., envir = globalenv()) {
   stopifnot(is.environment(envir))
+  if (!interactive()) return()
 
   expressions <- eval(substitute(alist(...)))
   check_expressions(expressions)
@@ -23,6 +26,18 @@ mappy <- function(..., envir = globalenv()) {
     makeActiveBinding(names(expressions)[i], fn, env = envir)
   })
 }
+
+#' @rdname mappy 
+#' @inheritParams mappy
+#' @param expression_names character. The expressions to unmap.
+unmappy <- function(expression_names, envir = globalenv()) {
+  stopifnot(is.character(expression_names))
+  if (!bindingIsActive(expression_names, env)) {
+    warning(sQuote(expression_names), " is not a shortcut, skipping unmapping")
+  }
+  rm(list = expression_names, envir = envir)
+}
+unmappy <- Vectorize(unmappy, "expression_names")
 
 check_expressions <- function(expressions) {
   expression_names <- names(expressions)

@@ -16,5 +16,17 @@ describe("Setting shortcuts", {
   test_that("setting a shortcut is possible in the global environment", {
     mappy(hi = cat("Hello world"))
     expect_output(hi, "Hello world")
+    rm("hi", envir = globalenv()) # Clean up
+  })
+
+  test_that("setting a shortcut is possible in a custom environment", {
+    env <- new.env()
+    mappy(hi = cat("Hello world"), envir = env)
+    expect_output(env$hi, "Hello world")
   })
 })
+
+describe("Unmapping shortcuts", {
+  test_that("it 
+})
+

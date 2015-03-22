@@ -4,9 +4,12 @@
 \name{mappy}
 \alias{mappy}
 \alias{mappy-package}
+\alias{unmappy}
 \title{Assign an alias to an R expression in the interactive console.}
 \usage{
-mappy(..., envir)
+mappy(..., envir = globalenv())
+
+unmappy(expression_names, envir = globalenv())
 }
 \arguments{
 \item{...}{The named arguments will be translated to the aliases. See the
@@ -14,6 +17,8 @@ accompanying examples.}
 
 \item{envir}{environment. The environment to bind the aliases in using
 \code{\link{makeActiveBinding}}. By default, the global environment.}
+
+\item{expression_names}{character. The expressions to unmap.}
 }
 \description{
 Assign an alias to an R expression in the interactive console.
@@ -38,10 +43,12 @@ Mappy shortcuts do not apply outside of interactive R sessions (see
 \examples{
 mappy(hi = cat("Hello world"))
 hi # Now, writing "hi" executes cat("Hello world")
+unmappy("hi") # Now the shortcut is gone.
 
 env <- new.env()
 mappy(m = lm(Sepal.Width ~ Sepal.Length, data = iris)$model, envir = env)
 # Now, env$m will refer to the lm model object. Note that since the
 # expression will be re-computed each time, so will the model!
+model <- env$m
 }
 

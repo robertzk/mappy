@@ -23,7 +23,7 @@ Mappy shortcuts do not apply outside of interactive R sessions (see
 ```R
 mappy(S = some_expression) # some_expression is now bound to S
                            # This will persist between R sessions.
-unmappy(S)  # Will unmap the expression bound to S.
+unmappy("S")  # Will unmap the expression bound to S.
 mappy_all() # A named list of all mapped expressions.
 ```
 
