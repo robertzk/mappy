@@ -1,0 +1,22 @@
+Package: mappy
+Type: Package
+Title: mappy (http://github.com/robertzk/mappy)
+Description: Register shortcuts for use in the interactive R console to prevent
+    yourself from writing commonly used expressions multiple times.
+Version: 0.1.0
+Author: Robert Krzyzanowski <technoguyrob@gmail.com>
+Maintainer: Robert Krzyzanowski <technoguyrob@gmail.com>
+Authors@R: c(person("Robert", "Krzyzanowski",
+    email = "technoguyrob@gmail.com", role = c("aut", "cre")))
+Depends:
+    R (>= 3.0.1)
+License: MIT
+LazyData: true
+Imports:
+    stringr,
+    director
+Suggests:
+    knitr,
+    microbenchmark,
+    testthat
+Roxygen: list(wrap = FALSE)
