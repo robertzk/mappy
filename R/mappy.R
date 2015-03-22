@@ -32,8 +32,9 @@ mappy <- function(..., envir = globalenv()) {
 #' @param expression_names character. The expressions to unmap.
 unmappy <- function(expression_names, envir = globalenv()) {
   stopifnot(is.character(expression_names))
-  if (!bindingIsActive(expression_names, env)) {
+  if (!is_binding(expression_names, envir)) {
     warning(sQuote(expression_names), " is not a shortcut, skipping unmapping")
+    return()
   }
   rm(list = expression_names, envir = envir)
 }
@@ -60,4 +61,8 @@ make_function <- function(expr, envir) {
   fn <- eval(call("function", as.pairlist(list()), expr))
   environment(fn) <- envir
   fn
+}
+
+is_binding <- function(name, envir) {
+  exists(name, envir = envir, inherits = FALSE) && bindingIsActive(name, envir)
 }

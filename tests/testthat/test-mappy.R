@@ -27,6 +27,14 @@ describe("Setting shortcuts", {
 })
 
 describe("Unmapping shortcuts", {
-  test_that("it 
+  test_that("it complains when you try to unmap non-character shortcuts", {
+    expect_error(unmappy(1))
+    expect_error(unmappy(TRUE))
+    expect_error(unmappy(function() { }))
+  })
+
+  test_that("it issues a warning when attempting to unmap a non-existent shortcut", {
+    expect_warning(unmappy("not a thing yo"), "not a shortcut")
+  })
 })
 
