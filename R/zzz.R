@@ -8,6 +8,6 @@
 .onDetach <- function(lib, pkg) {
   if (interactive()) {
     packageStartupMessage("Detaching mappy shortcuts...\n")
-    deregister()
+    unload_registry(globalenv())
   }
 }
