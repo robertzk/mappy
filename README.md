@@ -7,7 +7,7 @@ This package provides the ability to create shortcuts for use in the
 interactive R console to prevent yourself from writing commonly used
 expressions multiple times.
 
-For example, if you frequently find yourselves typing `some_annoyingly$long_expression`,
+For example, if you frequently find yourself typing `some_annoyingly$long_expression`,
 you can bind it to `S` by writing `mappy(S = some_annoyingly$long_expression)`.
 
 Now, typing `S` in your interactive R console executes the expression

@@ -11,7 +11,7 @@ interactive R console to prevent yourself from writing commonly used
 expressions multiple times.
 }
 \details{
-For example, if you frequently find yourselves typing
+For example, if you frequently find yourself typing
    \code{some_annoyingly$long_expression},
 you can bind it to \code{S} by writing
    \code{mappy(S = some_annoyingly$long_expression)}.
