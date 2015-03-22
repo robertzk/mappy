@@ -19,7 +19,8 @@ mappy <- function(..., envir = globalenv()) {
   check_expressions(expressions)
 
   lapply(seq_along(expressions), function(i) {
-    makeActiveBinding(names(expressions)[i], expressions[[i]], envir = envir)
+    fn <- make_function(expressions[[i]], envir)
+    makeActiveBinding(names(expressions)[i], fn, env = envir)
   })
 }
 
@@ -38,4 +39,10 @@ check_expressions <- function(expressions) {
   }
 
   expression_names
+}
+
+make_function <- function(expr, envir) {
+  fn <- eval(call("function", as.pairlist(list()), expr))
+  environment(fn) <- envir
+  fn
 }
