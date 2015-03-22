@@ -39,36 +39,47 @@ describe("Removing from the registry", {
   })
 
   test_that("it can remove from the registry", {
-    register("a", quote(cat("Hello world")))
-    deregister("a")
-    expect_false(is.element("a", names(registry_map())))
+    with_mappy({
+      register("a", quote(cat("Hello world")))
+      deregister("a")
+      expect_false(is.element("a", names(registry_map())))
+    })
   })
 
   test_that("it can remove multiple objects from the registry", {
-    register("a", quote(cat("Hello world")))
-    register("b", quote(cat("Hello world")))
-    deregister(c("a", "b"))
-    expect_false(is.element("a", names(registry_map())))
-    expect_false(is.element("b", names(registry_map())))
+    with_mappy({
+      register("a", quote(cat("Hello world")))
+      register("b", quote(cat("Hello world")))
+      deregister(c("a", "b"))
+      expect_false(is.element("a", names(registry_map())))
+      expect_false(is.element("b", names(registry_map())))
+    })
   })
 })
 
 describe("Loading a registry", {
   test_that("it can load the registry into an environment", {
-    env <- new.env()
-    register("a", quote(cat("Hello world")))
-    load_registry(env)
-    expect_output(env$a, "Hello world")
+    with_mappy({
+      env <- new.env()
+      register("a", quote(cat("Hello world")))
+      load_registry(env)
+      expect_output(env$a, "Hello world")
+    })
   })
 })
 
 describe("Unloading a registry", {
   test_that("it can unload the registry from an environment", {
-    env <- new.env()
-    register("a", quote(cat("Hello world")))
-    load_registry(env)
-    unload_registry(env)
-    expect_null(env$a)
+    with_mappy({
+      env <- new.env()
+      register("a", quote(cat("Hello world")))
+      load_registry(env)
+      unload_registry(env)
+      expect_null(env$a)
+    })
   })
 })
 
+memoise::forget(mappy_file)
+memoise::forget(registry_dir)
+memoise::forget(registry_obj)

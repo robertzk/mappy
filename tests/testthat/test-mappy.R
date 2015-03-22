@@ -31,6 +31,12 @@ package_stub("base", "interactive", function() TRUE, {
       mappy(register = FALSE, hi = cat("Hello world"), envir = env)
       expect_output(env$hi, "Hello world")
     })
+
+    test_that("it can give a list of all shortcuts", {
+      mappy(hi = cat("Hello world"))
+      expect_equal(names(registry_map()), "hi")
+      unmappy("hi")
+    })
   })
 
   describe("Unmapping shortcuts", {
@@ -60,3 +66,6 @@ package_stub("base", "interactive", function() TRUE, {
   })
 })
 
+memoise::forget(mappy_file)
+memoise::forget(registry_dir)
+memoise::forget(registry_obj)

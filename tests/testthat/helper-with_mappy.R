@@ -7,8 +7,9 @@ with_options <- function(options, expr) {
 }
 
 with_mappy <- function(expr) {
-  tempdir <- tempdir()
+  tempdir <- tempfile()
   unlink(tempdir, FALSE, TRUE)
+  dir.create(tempdir, FALSE, TRUE)
   with_options(list(mappy.file = file.path(tempdir, "mappy")), {
     memoise::forget(registry_dir)
     memoise::forget(registry_obj)

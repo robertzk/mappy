@@ -9,7 +9,8 @@
 \usage{
 mappy(..., envir = globalenv(), register = identical(envir, globalenv()))
 
-unmappy(expression_names, envir = globalenv())
+unmappy(expression_names, envir = globalenv(), deregister = identical(envir,
+  globalenv()))
 }
 \arguments{
 \item{...}{The named arguments will be translated to the aliases. See the
@@ -23,6 +24,10 @@ in the registry. By default, \code{TRUE} if \code{envir} is the global
 environment, and \code{FALSE} otherwise.}
 
 \item{expression_names}{character. The expressions to unmap.}
+
+\item{deregister}{logical. Whether or not to deregister the shortcut
+in the registry. By default, \code{TRUE} if \code{envir} is the global
+environment, and \code{FALSE} otherwise.}
 }
 \description{
 Assign an alias to an R expression in the interactive console.

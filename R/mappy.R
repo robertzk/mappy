@@ -51,6 +51,12 @@ unmappy <- function(expression_names, envir = globalenv(),
 }
 unmappy <- Vectorize(unmappy, "expression_names")
 
+#' A list of all mapped shortcuts.
+#'
+#' @include registry.R
+#' @export
+mappy_all <- function() { (registry_map()) }
+
 check_expressions <- function(expressions) {
   expression_names <- names(expressions)
 

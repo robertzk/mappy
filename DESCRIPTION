@@ -22,3 +22,9 @@ Suggests:
     testthat,
     testthatsomemore
 Roxygen: list(wrap = FALSE)
+Collate:
+    'registry.R'
+    'mappy.R'
+    'package.mappy.R'
+    'utils.R'
+    'zzz.R'
