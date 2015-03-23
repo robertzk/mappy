@@ -17,6 +17,7 @@
 #' \code{\link[base]{interactive}}.
 #'
 #' @name mappy
-#' @import stringr
+#' @importFrom memoise memoise
+#' @importFrom director registry
 #' @docType package
 NULL
