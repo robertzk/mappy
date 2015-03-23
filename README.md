@@ -1,4 +1,4 @@
-Register shortcuts in R [![Build Status](https://travis-ci.org/robertzk/mappy.svg?branch=master)](https://travis-ci.org/robertzk/mappy) [![Coverage Status](https://coveralls.io/repos/robertzk/mappy/badge.svg?branch=master)](https://coveralls.io/r/robertzk/mappy)
+Register shortcuts in R [![Build Status](https://travis-ci.org/robertzk/mappy.svg?branch=master)](https://travis-ci.org/robertzk/mappy) [![Coverage Status](https://coveralls.io/repos/robertzk/mappy/badge.svg?branch=master)](https://coveralls.io/r/robertzk/mappy?branch=master)
 ===========
 
 This package provides the ability to create shortcuts for use in the
