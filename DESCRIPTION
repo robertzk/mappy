@@ -17,8 +17,6 @@ Imports:
     director,
     memoise
 Suggests:
-    knitr,
-    microbenchmark,
     testthat,
     testthatsomemore
 Roxygen: list(wrap = FALSE)

@@ -60,8 +60,9 @@ unmappy <- Vectorize(unmappy, "expression_names")
 #'
 #' @include registry.R
 #' @export
-#' @export
-mappy_all <- function() { (registry_map()) }
+mappy_all <- function() {
+  (registry_map()) # Explicit parens to prevent invisible
+}
 
 check_expressions <- function(expressions) {
   expression_names <- names(expressions)
