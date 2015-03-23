@@ -1,4 +1,4 @@
-Mappy [![Build Status](https://travis-ci.org/robertzk/mappy.svg?branch=master)](https://travis-ci.org/robertzk/mappy.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/robertzk/mappy/badge.svg?branch=master)](https://coveralls.io/r/robertzk/mappy)
+Mappy [![Build Status](https://travis-ci.org/robertzk/mappy.svg?branch=master)](https://travis-ci.org/robertzk/mappy) [![Coverage Status](https://coveralls.io/repos/robertzk/mappy/badge.svg?branch=master)](https://coveralls.io/r/robertzk/mappy)
 ===========
 
 Register shortcuts in R sessions.
@@ -15,15 +15,14 @@ in full each time. Note that mappy relies on the `~/.R/mappy` file (which it wil
 create the first time it needs it) to make this work between sessions.
 If you wish to use a different file, set `options(mappy.directory = "/your/dir")`.
 
-Mappy shortcuts do not apply outside of interactive R sessions (see
-\code{\link[base]{interactive}}.
+Mappy shortcuts do not apply outside of [interactive R sessions](https://stat.ethz.ch/R-manual/R-devel/library/base/html/interactive.html).
 
 # Operations
 
 ```R
 mappy(S = some_expression) # some_expression is now bound to S
                            # This will persist between R sessions.
-unmappy(S)  # Will unmap the expression bound to S.
+unmappy("S")  # Will unmap the expression bound to S.
 mappy_all() # A named list of all mapped expressions.
 ```
 

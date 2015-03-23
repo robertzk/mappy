@@ -14,9 +14,15 @@ License: MIT
 LazyData: true
 Imports:
     stringr,
-    director
+    director,
+    memoise
 Suggests:
-    knitr,
-    microbenchmark,
-    testthat
+    testthat,
+    testthatsomemore
 Roxygen: list(wrap = FALSE)
+Collate:
+    'registry.R'
+    'mappy.R'
+    'package.mappy.R'
+    'utils.R'
+    'zzz.R'
