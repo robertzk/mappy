@@ -62,7 +62,7 @@ describe("Loading a registry", {
     with_mappy({
       env <- new.env()
       mappy:::register("a", quote(env$y <- "Hello world"))
-      load_registry(env)
+      mappy:::load_registry(env)
       env$a
       expect_equal(env$y, "Hello world")
     })
@@ -74,8 +74,8 @@ describe("Unloading a registry", {
     with_mappy({
       env <- new.env()
       mappy:::register("a", quote(cat("Hello world")))
-      load_registry(env)
-      unload_registry(env)
+      mappy:::load_registry(env)
+      mappy:::unload_registry(env)
       expect_null(env$a)
     })
   })
