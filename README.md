@@ -29,7 +29,7 @@ mappy_all() # A named list of all mapped expressions.
 
 # Installation
 
-This package is not yet available from CRAN (as of March 21, 2015).
+This package is not yet available from CRAN (as of March 22, 2015).
 To install the latest development builds directly from GitHub, run this instead:
 
 ```R
