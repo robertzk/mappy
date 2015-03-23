@@ -33,9 +33,11 @@ package_stub("base", "interactive", function() TRUE, {
     })
 
     test_that("it can give a list of all shortcuts", {
-      mappy(hi = cat("Hello world"))
-      expect_equal(names(registry_map()), "hi")
-      unmappy("hi")
+      with_mappy({
+        mappy(hi = cat("Hello world"))
+        expect_equal(names(mappy:::registry_map()), "hi")
+        unmappy("hi")
+      })
     })
   })
 
