@@ -1,7 +1,5 @@
-Mappy [![Build Status](https://travis-ci.org/robertzk/mappy.svg?branch=master)](https://travis-ci.org/robertzk/mappy) [![Coverage Status](https://coveralls.io/repos/robertzk/mappy/badge.svg?branch=master)](https://coveralls.io/r/robertzk/mappy)
+Register shortcuts in R sessions [![Build Status](https://travis-ci.org/robertzk/mappy.svg?branch=master)](https://travis-ci.org/robertzk/mappy) [![Coverage Status](https://coveralls.io/repos/robertzk/mappy/badge.svg?branch=master)](https://coveralls.io/r/robertzk/mappy)
 ===========
-
-Register shortcuts in R sessions.
 
 This package provides the ability to create shortcuts for use in the
 interactive R console to prevent yourself from writing commonly used
