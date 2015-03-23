@@ -39,6 +39,15 @@ package_stub("base", "interactive", function() TRUE, {
         unmappy("hi")
       })
     })
+
+    test_that("gives a warning when overwriting a binding", {
+      env <- new.env()
+      mappy(register = FALSE, hi = cat("Hello world"), envir = env)
+      expect_warning(
+        mappy(register = FALSE, hi = cat("Hello world"), envir = env),
+        "is already a binding"
+      )
+    })
   })
 
   describe("Unmapping shortcuts", {
